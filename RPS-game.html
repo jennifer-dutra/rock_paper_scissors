@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <script>
+
+    // rock paper scissors implementation
+    var computerWins = 0;
+    var playerWins = 0;
+
+    console.log('Let\'s lay rock, paper, scissors. Best out of 5.');
+    console.log(game());
+
+    // game loop
+    function game() {
+      for(var i = 0; i < 5; i++) {
+        var userInput = prompt('Type your choice - rock, paper, or scissors?');
+        const playerSelection = userInput.toLowerCase();
+        const computerSelection = computerPlay();
+        console.log(playRound(playerSelection, computerSelection));
+      }
+      if(playerWins > computerWins) {
+        return 'You won the tournament!';
+      }
+      else if (playerWins < computerWins){
+        return 'You lost the tournament, sorry!';
+      }
+      else {
+        return 'Tournament tied!';
+      }
+    }
+
+    function playRound(playerSelection, computerSelection) {
+      console.log('Computer: ' + computerSelection);
+      console.log('You chose: ' + playerSelection);
+
+      // return results of round
+      if(playerSelection === computerSelection) {
+        return 'Tie!';
+      }
+      else if(playerSelection === 'rock' && computerSelection === 'paper') {
+        computerWins++;
+        return 'You lose! Paper beats rock.';
+      }
+      else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+        playerWins++;
+        return 'You win! Rock beats scissors';
+      }
+      else if(playerSelection === 'paper' && computerSelection === 'rock') {
+        playerWins++;
+        return 'You win! Paper beats rock.';
+      }
+      else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+        computerWins++;
+        return 'You lose! Scissors beats paper.';
+      }
+      else if(playerSelection === 'scissors' && computerSelection === 'rock') {
+        computerWins++;
+        return 'You lose! Rock beats scissors.';
+      }
+      else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+        playerWins++;
+        return 'You win! Scissors beats paper.';
+      }
+
+    }
+
+    // randomly pick for computer
+    function computerPlay() {
+      var choice = Math.floor(Math.random() * 3);
+      if(choice === 0)  return 'rock';
+      else if(choice === 1) return 'paper';
+      else return 'scissors';
+    }
+
+    </script>
+  </body>
+</html>
